@@ -139,7 +139,7 @@ dependencies = [
  "hex",
  "schemars",
  "serde",
- "serde-json-wasm",
+ "serde-json-wasm 0.4.1",
  "thiserror",
  "uint",
 ]
@@ -214,7 +214,7 @@ dependencies = [
  "cosmwasm-std",
  "cw-storage-plus 0.16.0",
  "cw1155",
- "cw20",
+ "cw20 0.16.0",
 ]
 
 [[package]]
@@ -336,6 +336,19 @@ dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-utils 0.16.0",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "cw20"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "91666da6c7b40c8dd5ff94df655a28114efc10c79b70b4d06f13c31e37d60609"
+dependencies = [
+ "cosmwasm-schema",
+ "cosmwasm-std",
+ "cw-utils 1.0.1",
  "schemars",
  "serde",
 ]
@@ -721,6 +734,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "serde-json-wasm"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a15bee9b04dd165c3f4e142628982ddde884c2022a89e8ddf99c4829bf2c3a58"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "serde_derive"
 version = "1.0.151"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -899,12 +921,12 @@ dependencies = [
  "cosmwasm-storage",
  "cw-asset",
  "cw-multi-test",
- "cw-storage-plus 0.16.0",
- "cw2 0.16.0",
- "cw20",
+ "cw-storage-plus 1.0.1",
+ "cw2 1.0.1",
+ "cw20 1.0.1",
  "json-codec-wasm",
  "schemars",
- "serde-json-wasm",
+ "serde-json-wasm 0.5.0",
  "thiserror",
  "warp-protocol",
 ]
@@ -919,13 +941,13 @@ dependencies = [
  "cosmwasm-storage",
  "cw-asset",
  "cw-multi-test",
- "cw-storage-plus 0.16.0",
- "cw-utils 0.16.0",
- "cw2 0.16.0",
- "cw20",
+ "cw-storage-plus 1.0.1",
+ "cw-utils 1.0.1",
+ "cw2 1.0.1",
+ "cw20 1.0.1",
  "json-codec-wasm",
  "schemars",
- "serde-json-wasm",
+ "serde-json-wasm 0.5.0",
  "thiserror",
  "warp-protocol",
 ]
@@ -941,7 +963,7 @@ dependencies = [
  "cw-multi-test",
  "cw-storage-plus 0.16.0",
  "cw2 0.16.0",
- "cw20",
+ "cw20 0.16.0",
  "schemars",
  "serde",
  "strum",
