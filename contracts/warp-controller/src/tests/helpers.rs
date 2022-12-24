@@ -9,7 +9,7 @@ use cosmwasm_std::{
 
 use warp_protocol::controller::InstantiateMsg;
 
-pub fn instantiate_warp(
+pub fn instantiate_warp_controller(
     deps: DepsMut,
     env: Env,
     info: MessageInfo,

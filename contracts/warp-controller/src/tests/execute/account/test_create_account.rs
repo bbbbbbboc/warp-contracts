@@ -1,4 +1,4 @@
-use crate::tests::helpers::{create_warp_account, instantiate_warp};
+use crate::tests::helpers::{create_warp_account, instantiate_warp_controller};
 use crate::ContractError;
 use cosmwasm_std::testing::{mock_dependencies, mock_env, mock_info};
 use cosmwasm_std::{
@@ -11,7 +11,7 @@ fn test_create_account_success() {
     let env = mock_env();
     let info = mock_info("vlad", &vec![coin(100, "uluna")]);
 
-    let _instantiate_res = instantiate_warp(
+    instantiate_warp_controller(
         deps.as_mut(),
         env.clone(),
         info.clone(),
@@ -65,7 +65,7 @@ fn test_create_account_exists() {
     let env = mock_env();
     let info = mock_info("vlad", &vec![coin(100, "uluna")]);
 
-    let _instantiate_res = instantiate_warp(
+    instantiate_warp_controller(
         deps.as_mut(),
         env.clone(),
         info.clone(),
