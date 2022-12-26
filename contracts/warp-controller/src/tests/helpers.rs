@@ -48,10 +48,13 @@ pub fn create_warp_account(
                 Attribute::new("action", "instantiate"),
                 Attribute::new(
                     "owner",
-                    format!(
-                        "terra1vladvladvladvladvladvladvladvladvla{}",
-                        account_id + Uint64::new(100)
-                    ),
+                    // it's this modification, if it doesn't modify the owner we would return early in controller create_account execute
+                    // (i.e. won't call warp account contract)
+                    // format!(
+                    //     "terra1vladvladvladvladvladvladvladvladvla{}",
+                    //     account_id + Uint64::new(100)
+                    // ),
+                    info.sender,
                 ),
                 Attribute::new(
                     "contract_addr",

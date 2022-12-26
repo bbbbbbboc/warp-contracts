@@ -156,6 +156,7 @@ pub fn reply(deps: DepsMut, _env: Env, msg: Reply) -> Result<Response, ContractE
                 return Err(ContractError::AccountAlreadyExists {});
             }
 
+            // save, primary key is owner (EOA address), sub index is warp account contract address
             ACCOUNTS().save(
                 deps.storage,
                 deps.api.addr_validate(&owner)?,

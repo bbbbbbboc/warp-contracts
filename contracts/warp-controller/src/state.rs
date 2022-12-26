@@ -51,6 +51,7 @@ pub fn FINISHED_JOBS<'a>() -> IndexedMap<'a, u64, Job, JobIndexes<'a>> {
 }
 
 pub struct AccountIndexes<'a> {
+    // Account.account is unique
     pub account: UniqueIndex<'a, Addr, Account>,
 }
 
@@ -63,6 +64,10 @@ impl IndexList<Account> for AccountIndexes<'_> {
 
 #[allow(non_snake_case)]
 pub fn ACCOUNTS<'a>() -> IndexedMap<'a, Addr, Account, AccountIndexes<'a>> {
+    // primary key is owner (EOA) type is Addr,
+    // value is corresponding warp account, type is Account,
+    // secondary key (sub key / sub idx) type is AccountIndexes
+    // so we can query by PK: EOA owner (msg.sender), or sub index: the warp account address
     let indexes = AccountIndexes {
         account: UniqueIndex::new(|account| account.account.clone(), "accounts__account"),
     };

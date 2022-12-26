@@ -74,6 +74,9 @@ pub enum ContractError {
 
     #[error("Error resolving JSON path")]
     ResolveError {},
+
+    #[error("Error warp account exists NOTE this is in controller execute create_account not in reply")]
+    WarpAccountExistInExecuteCreateAccountError {},
 }
 
 impl From<serde_json_wasm::de::Error> for ContractError {

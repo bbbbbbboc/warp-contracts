@@ -18,7 +18,7 @@ pub struct QueryAccountsMsg {
 #[cw_serde]
 pub struct Account {
     pub owner: Addr,
-    pub account: Addr,
+    pub account: Addr, // unique identifier, owner don't need to be unique as one EOA can own multiple warp accounts
 }
 
 #[cw_serde]

@@ -9,7 +9,10 @@ use cosmwasm_std::{
 fn test_create_account_success() {
     let mut deps = mock_dependencies();
     let env = mock_env();
-    let info = mock_info("vlad", &vec![coin(100, "uluna")]);
+    let info = mock_info(
+        "terra1vladvladvladvladvladvladvladvladvla000",
+        &vec![coin(100, "uluna")],
+    );
 
     instantiate_warp_controller(
         deps.as_mut(),
@@ -51,7 +54,7 @@ fn test_create_account_success() {
         reply_res.unwrap(),
         Response::new()
             .add_attribute("action", "save_account")
-            .add_attribute("owner", "terra1vladvladvladvladvladvladvladvladvla100")
+            .add_attribute("owner", "terra1vladvladvladvladvladvladvladvladvla000")
             .add_attribute(
                 "account_address",
                 "terra1vladvladvladvladvladvladvladvladvla101"
@@ -63,7 +66,10 @@ fn test_create_account_success() {
 fn test_create_account_exists() {
     let mut deps = mock_dependencies();
     let env = mock_env();
-    let info = mock_info("vlad", &vec![coin(100, "uluna")]);
+    let info = mock_info(
+        "terra1vladvladvladvladvladvladvladvladvla000",
+        &vec![coin(100, "uluna")],
+    );
 
     instantiate_warp_controller(
         deps.as_mut(),
@@ -82,25 +88,30 @@ fn test_create_account_exists() {
     let (create_account_res, reply_res) =
         create_warp_account(&mut deps, env.clone(), info.clone(), Uint64::new(0));
 
+    // assert_eq!(
+    //     create_account_res.unwrap(),
+    //     Response::new()
+    //         .add_attribute("action", "create_account")
+    //         .add_submessage(SubMsg {
+    //             id: 0,
+    //             msg: CosmosMsg::Wasm(WasmMsg::Instantiate {
+    //                 admin: None,
+    //                 code_id: 0,
+    //                 msg: to_binary(&warp_protocol::account::InstantiateMsg {
+    //                     owner: info.sender.to_string(),
+    //                 })
+    //                 .unwrap(),
+    //                 funds: vec![],
+    //                 label: info.sender.to_string(),
+    //             }),
+    //             gas_limit: None,
+    //             reply_on: ReplyOn::Always,
+    //         })
+    // );
+
     assert_eq!(
-        create_account_res.unwrap(),
-        Response::new()
-            .add_attribute("action", "create_account")
-            .add_submessage(SubMsg {
-                id: 0,
-                msg: CosmosMsg::Wasm(WasmMsg::Instantiate {
-                    admin: None,
-                    code_id: 0,
-                    msg: to_binary(&warp_protocol::account::InstantiateMsg {
-                        owner: info.sender.to_string(),
-                    })
-                    .unwrap(),
-                    funds: vec![],
-                    label: info.sender.to_string(),
-                }),
-                gas_limit: None,
-                reply_on: ReplyOn::Always,
-            })
+        create_account_res.unwrap_err(),
+        ContractError::WarpAccountExistInExecuteCreateAccountError {}
     );
 
     assert_eq!(
